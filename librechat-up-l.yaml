@@ -37,6 +37,17 @@ mcpServers:
     args:
       - mcp-server-time
     startup: false
+  Hatch:
+    # Cloudbeds marketing skill catalog. Each tool runs a multi-stage skill
+    # pipeline against the Cloudbeds brand voice and returns Markdown ready
+    # for review. 18 tools (battlecards, blog posts, briefs, two-pagers,
+    # content_agent, etc.). Bearer-token authenticated.
+    type: streamable-http
+    url: https://adam-harris--hatch.modal.run/mcp/mcp
+    headers:
+      Authorization: "Bearer ${MCP_AUTH_TOKEN}"
+    initTimeout: 30000
+    timeout: 600000  # 10 min — covers L4/L5 multi-stage runs
 
 endpoints:
   custom:
